@@ -1,0 +1,10 @@
+D:\C++++_wku\20232301_권용현\from_game6-1\bin\Debug\from_game6-1.exe.config
+D:\C++++_wku\20232301_권용현\from_game6-1\bin\Debug\from_game6-1.exe
+D:\C++++_wku\20232301_권용현\from_game6-1\bin\Debug\from_game6-1.pdb
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6-1.csproj.AssemblyReference.cache
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6_1.Properties.Resources.resources
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6-1.csproj.GenerateResource.cache
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6-1.csproj.CoreCompileInputs.cache
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6-1.exe
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\from_game6-1.pdb
+D:\C++++_wku\20232301_권용현\from_game6-1\obj\Debug\MinesweeperGame.Form1.resources
