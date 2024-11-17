@@ -1,0 +1,10 @@
+D:\C++++_wku\20232301_권용현\from_game3\bin\Debug\from_game3.exe.config
+D:\C++++_wku\20232301_권용현\from_game3\bin\Debug\from_game3.exe
+D:\C++++_wku\20232301_권용현\from_game3\bin\Debug\from_game3.pdb
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.csproj.AssemblyReference.cache
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.Form1.resources
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.Properties.Resources.resources
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.csproj.GenerateResource.cache
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.csproj.CoreCompileInputs.cache
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.exe
+D:\C++++_wku\20232301_권용현\from_game3\obj\Debug\from_game3.pdb
