@@ -1,0 +1,10 @@
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.csproj.AssemblyReference.cache
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.Form1.resources
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.Properties.Resources.resources
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.csproj.GenerateResource.cache
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.csproj.CoreCompileInputs.cache
+D:\C++++_wku\20232301_권용현\from_game5\bin\Debug\from_game5.exe.config
+D:\C++++_wku\20232301_권용현\from_game5\bin\Debug\from_game5.exe
+D:\C++++_wku\20232301_권용현\from_game5\bin\Debug\from_game5.pdb
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.exe
+D:\C++++_wku\20232301_권용현\from_game5\obj\Debug\from_game5.pdb
