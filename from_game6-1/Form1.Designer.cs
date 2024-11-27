@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(658, 664);
             this.Name = "Form1";
             this.Text = "지뢰찾기 게임";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }

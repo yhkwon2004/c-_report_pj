@@ -7,6 +7,10 @@ namespace MinesweeperGame
 {
     public partial class Form1 : Form
     {
+        private string game_score = string.Empty;
+        public string Score { get; private set; }
+        public string GameName { get; private set; } = "지뢰찾기";
+
         private const int SIZE = 17; // 게임 보드 크기
         private const int MINE_COUNT = 20; // 지뢰 개수
         private int score;
@@ -20,7 +24,7 @@ namespace MinesweeperGame
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); //--------------------------------
             CenterForm(); // 창 위치 조정
             InitializeGame();
         }
@@ -107,7 +111,6 @@ namespace MinesweeperGame
             };
             this.Controls.Add(scoreLabel);
 
-            // 오른쪽 하단에 "지뢰찾기 게임" 텍스트를 추가
             Label gameTitleLabel = new Label
             {
                 Name = "gameTitleLabel",
@@ -147,18 +150,14 @@ namespace MinesweeperGame
             int x = position.Item1;
             int y = position.Item2;
 
-            // 첫 클릭에서 지뢰가 터진 경우
             if (firstClick)
             {
                 firstClick = false;
                 if (mineBoard[x, y] == -1)
                 {
-                    score = 0;
                     btn.BackColor = Color.Red;
                     btn.Text = "💥";
-                    ShowAllMines();
-                    gameOver = true;
-                    MessageBox.Show($"게임 종료! 최종 점수: {GetGameScore()}");
+                    EndGame(false);
                     return;
                 }
                 else
@@ -167,14 +166,11 @@ namespace MinesweeperGame
                 }
             }
 
-            // 지뢰 클릭 시
             if (mineBoard[x, y] == -1)
             {
                 btn.BackColor = Color.Red;
                 btn.Text = "💥";
-                ShowAllMines();
-                gameOver = true;
-                MessageBox.Show($"게임 종료! 최종 점수: {GetGameScore()}");
+                EndGame(false);
                 return;
             }
 
@@ -190,12 +186,9 @@ namespace MinesweeperGame
             score++;
             UpdateScore();
 
-            // 모든 지뢰를 제외한 칸을 열었을 경우 승리
             if (score == cellsToReveal)
             {
-                gameWon = true;
-                score = 100;
-                MessageBox.Show($"게임 승리! 최종 점수: {GetGameScore()}");
+                EndGame(true);
             }
         }
 
@@ -283,9 +276,21 @@ namespace MinesweeperGame
             }
         }
 
-        private string GetGameScore()
+        public void EndGame(bool won)
         {
-            return score.ToString();
+            gameOver = true;
+            if (won)
+            {
+                MessageBox.Show($"게임 승리! 최종 점수: {score}");
+            }
+            else
+            {
+                MessageBox.Show($"게임 실패! 최종 점수: {score}");
+            }
+            Score = score.ToString(); // Score 속성에 점수 할당
+            this.Close();
         }
+
+        private void Form1_Load(object sender, EventArgs e) { }
     }
 }

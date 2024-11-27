@@ -8,6 +8,10 @@ namespace from_game5
 {
     public partial class Form1 : Form
     {
+        private string game_score = string.Empty;
+        public string Score { get; private set; }
+        public string GameName { get; private set; } = "뱀게임";
+
         // 게임 그리드 크기 (21x21 크기)
         private const int gridSize = 21;
 
@@ -120,9 +124,7 @@ namespace from_game5
             // 벽 충돌 확인 (그리드 경계 바깥으로 나가면 게임 종료)
             if (head.X < 1 || head.X >= gridSize - 1 || head.Y < 1 || head.Y >= gridSize - 1)
             {
-                gameOver = true; // 게임 종료
-                timer.Stop();    // 타이머 정지
-                Console.WriteLine(GetGameResult()); // 최종 점수 출력
+                EndGame(); // 게임 종료
                 return;
             }
 
@@ -148,9 +150,7 @@ namespace from_game5
             // 뱀이 자기 자신과 충돌했는지 확인
             if (snake.Skip(1).Contains(head))
             {
-                gameOver = true; // 게임 종료
-                timer.Stop();    // 타이머 정지
-                Console.WriteLine(GetGameResult()); // 최종 점수 출력
+                EndGame(); // 게임 종료
                 return;
             }
         }
@@ -180,14 +180,21 @@ namespace from_game5
             }
 
             // 뱀의 몸 그리기 (녹색 타일)
-            foreach (var point in snake){g.FillRectangle(Brushes.Green, point.X * tileSize, point.Y * tileSize, tileSize, tileSize);}
+            foreach (var point in snake)
+            {
+                g.FillRectangle(Brushes.Green, point.X * tileSize, point.Y * tileSize, tileSize, tileSize);
+            }
             // 먹이 그리기 (빨간색 타일)
             g.FillRectangle(Brushes.Red, food.X * tileSize, food.Y * tileSize, tileSize, tileSize);
+
             // 점수 표시
             g.DrawString($"점수: {score}", new Font("Arial", 12), Brushes.Black, new PointF(5, 430));
+
             // 게임 종료 시 '게임 오버' 메시지 표시
-            if (gameOver){g.DrawString("게임 오버!", new Font("Arial", 24), Brushes.Red, new PointF(120, 50));}
-            g.DrawString("뱀 게임", new Font("Arial", 24, FontStyle.Bold), Brushes.Black, new PointF(290, 430));
+            if (gameOver)
+            {
+                g.DrawString("게임 오버!", new Font("Arial", 24), Brushes.Red, new PointF(120, 50));
+            }
         }
 
         // 키보드 입력 이벤트 처리 (뱀의 방향 전환)
@@ -200,15 +207,16 @@ namespace from_game5
             if (e.KeyCode == Keys.Right && direction != Direction.Left) direction = Direction.Right;
         }
 
-        // 게임 종료 후 최종 점수를 반환
-        private string GetGameResult()
+        // 게임 종료 및 점수 반환
+        public void EndGame()
         {
-            return score.ToString(); // 점수만 반환
+            gameOver = true; // 게임 종료 상태 설정
+            timer.Stop();    // 타이머 정지
+            MessageBox.Show($"게임 종료! 최종 점수: {score}");
+            Score = score.ToString(); // Score 속성에 점수 할당
+            this.Close();    // 폼 닫기
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Form1_Load(object sender, EventArgs e) { }
     }
 }

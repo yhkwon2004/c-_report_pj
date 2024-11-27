@@ -7,6 +7,10 @@ namespace from_game9
 {
     public partial class Form1 : Form
     {
+        private string game_score = string.Empty;
+        public string Score { get; private set; }
+        public string GameName { get; private set; } = "테트리스";
+
         public const int BoardWidth = 10;
         public const int BoardHeight = 20;
         private const int BlockSize = 30;
@@ -266,7 +270,7 @@ namespace from_game9
                 case Keys.Left:
                     if (IsValidPosition(currentTetromino, -1, 0))
                     {
-                                                currentTetromino.X--;
+                        currentTetromino.X--;
                     }
                     break;
 
@@ -308,90 +312,110 @@ namespace from_game9
         }
 
         // 점수 반환 메서드
-        public string GetScore()
+        public string GetScore(int score)
         {
-            return score.ToString();
+            Score = score.ToString(); // 점수를 문자열로 저장
+            this.Close(); // 폼 닫기
+            return Score; // 점수 반환
         }
-    }
 
-    // 테트로미노 클래스
-    public class Tetromino
-    {
-        public int[,] Shape { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        private static Random random = new Random();
-
-        public static Tetromino CreateRandomTetromino()
+        // 게임 종료 메서드
+        private string 게임_종료_시(int currentScore)
         {
-            int shapeType = random.Next(7);
-            Tetromino tetromino = new Tetromino();
-            tetromino.X = Form1.BoardWidth / 2 - 1;
-            tetromino.Y = 0;
+            string finalScore = GetScore(currentScore); // 점수를 반환받으면서 폼 닫기
+            return finalScore; // 점수 반환
+        }
 
-            switch (shapeType)
+        //private void GameOver()
+        //{
+        //    GameForm gameForm = new GameForm();
+        //    string finalScore = gameForm.게임_종료_시(score); // 게임 종료 시 점수 반환
+        //    MessageBox.Show($"최종 점수: {finalScore}"); // 점수 표시
+        //}
+
+        //호출방식
+
+
+
+        // 테트로미노 클래스
+        public class Tetromino
+        {
+            public int[,] Shape { get; set; }
+            public int X { get; set; }
+            public int Y { get; set; }
+
+            private static Random random = new Random();
+
+            public static Tetromino CreateRandomTetromino()
             {
-                case 0: // I
-                    tetromino.Shape = new int[,] {
+                int shapeType = random.Next(7);
+                Tetromino tetromino = new Tetromino();
+                tetromino.X = Form1.BoardWidth / 2 - 1;
+                tetromino.Y = 0;
+
+                switch (shapeType)
+                {
+                    case 0: // I
+                        tetromino.Shape = new int[,] {
                         { 1, 1, 1, 1 }
                     };
-                    break;
-                case 1: // O
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 1: // O
+                        tetromino.Shape = new int[,] {
                         { 1, 1 },
                         { 1, 1 }
                     };
-                    break;
-                case 2: // T
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 2: // T
+                        tetromino.Shape = new int[,] {
                         { 0, 1, 0 },
                         { 1, 1, 1 }
                     };
-                    break;
-                case 3: // L
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 3: // L
+                        tetromino.Shape = new int[,] {
                         { 1, 0, 0 },
                         { 1, 1, 1 }
                     };
-                    break;
-                case 4: // J
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 4: // J
+                        tetromino.Shape = new int[,] {
                         { 0, 0, 1 },
                         { 1, 1, 1 }
                     };
-                    break;
-                case 5: // S
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 5: // S
+                        tetromino.Shape = new int[,] {
                         { 0, 1, 1 },
                         { 1, 1, 0 }
                     };
-                    break;
-                case 6: // Z
-                    tetromino.Shape = new int[,] {
+                        break;
+                    case 6: // Z
+                        tetromino.Shape = new int[,] {
                         { 1, 1, 0 },
                         { 0, 1, 1 }
                     };
-                    break;
+                        break;
+                }
+
+                return tetromino;
             }
 
-            return tetromino;
-        }
-
-        // 회전 메서드
-        public void Rotate(int times = 1)
-        {
-            for (int i = 0; i < times; i++)
+            // 회전 메서드
+            public void Rotate(int times = 1)
             {
-                int[,] rotatedShape = new int[Shape.GetLength(1), Shape.GetLength(0)];
-                for (int y = 0; y < Shape.GetLength(0); y++)
+                for (int i = 0; i < times; i++)
                 {
-                    for (int x = 0; x < Shape.GetLength(1); x++)
+                    int[,] rotatedShape = new int[Shape.GetLength(1), Shape.GetLength(0)];
+                    for (int y = 0; y < Shape.GetLength(0); y++)
                     {
-                        rotatedShape[x, Shape.GetLength(0) - 1 - y] = Shape[y, x];
+                        for (int x = 0; x < Shape.GetLength(1); x++)
+                        {
+                            rotatedShape[x, Shape.GetLength(0) - 1 - y] = Shape[y, x];
+                        }
                     }
+                    Shape = rotatedShape;
                 }
-                Shape = rotatedShape;
             }
         }
     }
